@@ -20,7 +20,7 @@ const ProductList = ({products}: ProductProps) => {
   <div className="card-body">
     <h5 className="card-title">{e.name}</h5>
     <p className="card-text">{e.price.toLocaleString() }</p>
-    <a href={`/product/${e.id}`} className="btn btn-primary">Chi tiết</a>
+    <a href={`/product/${e._id}`} className="btn btn-primary">Chi tiết</a>
   </div>
 </div>
 

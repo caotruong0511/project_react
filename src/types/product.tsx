@@ -1,5 +1,9 @@
-export type ProductType={
-    id?:Number|String,
-    name:String,
-    price:Number
-}
+export type ProductType = {
+    _id: number,
+    name: string,
+    price: number,
+    img:String,
+    quantity:Number,
+    desc:String  
+  }
+  

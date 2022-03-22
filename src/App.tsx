@@ -9,13 +9,13 @@ import ProductList from './components/ProductList'
 import Detail from './page/Detail'
 import Adminlayout from './page/layouts/Adminlayout'
 import ProductManager from './page/ProductManager'
-import { list } from './api/Product'
-// import "bootstrap/dist/css/bootstrap.min.css"
+import { get } from './api/Product'
+
 function App() {
   const [product, setProduct] = useState<ProductType[]>([])
 useEffect(()=>{
 const getproduct=async ()=>{
-  const {data}= await list();
+  const {data}= await get();
   setProduct(data)
 }
 getproduct()
@@ -30,7 +30,7 @@ getproduct()
           <Route path='/product/:id' element={<Detail/>}/>
            </Route>
            <Route path='/admin'element={<Adminlayout/>}>
-             <Route path='product' element={<ProductManager/>}/>
+             <Route  path='product' element={<ProductManager/>}/>
            </Route>
       </Routes>
     </div>

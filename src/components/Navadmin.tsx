@@ -5,8 +5,7 @@ type Props = {}
 
 const Navadmin = (props: Props) => {
   return (
-    <div>
-          <div><div className="min-h-full">
+    <div><div className="min-h-full">
     <nav className="bg-gray-800">
       <div className="max-w-9xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
@@ -115,9 +114,7 @@ const Navadmin = (props: Props) => {
       </div>
     </nav>
   
-  </div>
-    </div>
-    </div>
+  </div></div>
   )
 }
 
