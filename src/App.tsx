@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import logo from './logo.svg'
 import './App.css'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes,useNavigate } from 'react-router-dom'
 import Websitelayout from './page/layouts/Websitelayout'
 import { ProductType } from './types/product'
 import axios from 'axios'
@@ -9,7 +9,8 @@ import ProductList from './components/ProductList'
 import Detail from './page/Detail'
 import Adminlayout from './page/layouts/Adminlayout'
 import ProductManager from './page/ProductManager'
-import { get } from './api/Product'
+import { add, get } from './api/Product'
+import Productadd from './page/Productadd'
 
 function App() {
   const [product, setProduct] = useState<ProductType[]>([])
@@ -21,6 +22,12 @@ const getproduct=async ()=>{
 getproduct()
 
 },[])
+
+const onHandleradd=async(products:ProductType)=>{
+  const {data}= await add(products);
+  
+setProduct([...product,data])
+}
   return (
     <div className="App">
       <Routes>
@@ -31,6 +38,7 @@ getproduct()
            </Route>
            <Route path='/admin'element={<Adminlayout/>}>
              <Route  path='product' element={<ProductManager/>}/>
+             <Route  path='/admin/product/add' element={<Productadd onAdd={onHandleradd}/>}/>
            </Route>
       </Routes>
     </div>

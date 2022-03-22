@@ -13,17 +13,14 @@ import { ProductType } from '../types/product'
 // }]
 
 const ProductManager = () => {
-  const [product,setproduct] = useState<ProductType[]>()
-   useEffect(()=>{
-    const products=async()=>{
-     
-      const {data} = await get();
-      setproduct(data)
-      console.log(data)
-     }
-     products();
-   },[])
-
+const [product,setproduct]=useState<ProductType[]>([])
+useEffect(()=>{
+  const products=async()=>{
+   const {data}= await get();
+   setproduct(data);
+  }
+  products();
+},[])
   return (
     <div>
        <a href="/admin/product/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</a>
@@ -60,7 +57,7 @@ const ProductManager = () => {
                 <tbody className="bg-white divide-y divide-gray-200">
                  {product?.map((e,index)=>{
                  return (
-                       <tr key={e._id}>
+                       <tr key={index}>
                          <td className="px-6 py-4">
                            {index++}
                          </td>
