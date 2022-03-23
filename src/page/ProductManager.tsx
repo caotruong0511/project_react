@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { get } from '../api/Product' 
 import { ProductType } from '../types/product'
 
@@ -11,16 +12,11 @@ import { ProductType } from '../types/product'
 //   quantity:Number,
 //   desc:String  
 // }]
-
-const ProductManager = () => {
-const [product,setproduct]=useState<ProductType[]>([])
-useEffect(()=>{
-  const products=async()=>{
-   const {data}= await get();
-   setproduct(data);
-  }
-  products();
-},[])
+type ProudctManager={
+  product:ProductType[],
+  onRemove:(_id:string|number)=>void
+}
+const ProductManager = (props:ProudctManager) => {
   return (
     <div>
        <a href="/admin/product/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</a>
@@ -55,7 +51,7 @@ useEffect(()=>{
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                 {product?.map((e,index)=>{
+                 {props.product?.map((e,index)=>{
                  return (
                        <tr key={index}>
                          <td className="px-6 py-4">
@@ -77,10 +73,10 @@ useEffect(()=>{
                            {e.desc}
                          </td>
                          <td className="px-4 py-4 text-sm font-bold">
-                           <a href="" className="text-indigo-600 hover:text-indigo-900">Edit</a>
+                           <Link to={`/admin/product/${e._id}/edit`}  className="text-indigo-600 hover:text-indigo-900">Edit</Link>
                            <span className="text-indigo-600 hover:text-indigo-900">|</span>
-                           <a href="" id="btnDelele" className="text-indigo-600 hover:text-indigo-900"><button id="btndel">Xóa</button></a>
-                         </td>
+                          <button onClick={()=>props.onRemove(e._id)} id="btndel">Xóa</button>
+                          </td>
                        </tr>
                  )
                        })}
