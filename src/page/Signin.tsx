@@ -1,19 +1,32 @@
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { signin, signup } from '../api/auth'
 import { UserType } from '../types/user'
+import { authenticate } from '../utils/localstoage'
 
 type UserProps = {
-    onAdd:(User:UserType)=>void
+   
 }
 type FormInput={
-    name:string,
+ 
     email:string,
     password:string
 }
 const Signin = (props: UserProps)=> {
+  const navigate=useNavigate();
     const {register,handleSubmit,formState:{errors}}=useForm<FormInput>();
-    const onSubmit:SubmitHandler<FormInput>=data=>{
-        props.onAdd(data)
+    const onSubmit:SubmitHandler<FormInput>=async data=>{
+      const {data:user}=await signin(data);
+      authenticate(user,()=>{
+      if(user.user.roll!=2){
+        navigate("/")
+      }
+      else{
+        navigate("/admin")
+      }
+
+      })
     }
   return (
  <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

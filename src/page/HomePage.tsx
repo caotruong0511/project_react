@@ -22,7 +22,7 @@ const HomePage = (props: ProductProps) => {
     const {data}=await get()
     const hotsale=[];
     data.sort((a: any, b: any) => a.discount < b.discount ? 1 : (b.discount < a.discount ? -1 : 0))
- console.log(data)
+ 
     for(let i=0;i<data.length;i++){
      hotsale.push(data[i])
      if(hotsale.length==5){

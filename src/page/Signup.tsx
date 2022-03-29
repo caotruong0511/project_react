@@ -1,9 +1,11 @@
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router-dom'
+import { signup } from '../api/auth'
 import { UserType } from '../types/user'
 
 type UserProps = {
-    onAdd:(User:UserType)=>void
+    
 }
 type FormInput={
     name:string,
@@ -11,9 +13,11 @@ type FormInput={
     password:string
 }
 const Signup = (props: UserProps)=> {
+  const navigate=useNavigate()
     const {register,handleSubmit,formState:{errors}}=useForm<FormInput>();
     const onSubmit:SubmitHandler<FormInput>=data=>{
-        props.onAdd(data)
+      signup(data)
+      console.log(data)
     }
   return (
  <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">

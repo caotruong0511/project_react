@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { get } from '../../api/Product' 
+import { Category } from '../../types/category'
 import { ProductType } from '../../types/product'
 
 
@@ -17,6 +18,13 @@ type ProudctManager={
   onRemove:(_id:string|number)=>void
 }
 const ProductManager = (props:ProudctManager) => {
+  
+  // const [cate,setcate]=useState<Category[]>([])
+  // const product_one=async()=>{ 
+  //   const {data} = await get();
+  //   console.log(data)
+  // }
+  // product_one()
   return (
     <div>
        <Link to="/admin/product/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</Link>
@@ -46,6 +54,9 @@ const ProductManager = (props:ProudctManager) => {
                       Discount
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
+                      Category
+                    </th>
+                    <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
                       Desc
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
@@ -55,16 +66,17 @@ const ProductManager = (props:ProudctManager) => {
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
                  {props.product?.map((e,index)=>{
+                   console.log(e)
                  return (
                        <tr key={index}>
                          <td className="px-6 py-4">
-                           {index++}
+                           {++index}
                          </td>
                          <td className="px-4 py-4">
                            {e.name}
                          </td>
                          <td className="px-4 py-4 w-1/12">
-                          {e.img}
+                          <img src={`${e.img}`} alt="" />
                          </td>
                          <td className="px-4 py-4">
                          {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format((e.price))}
@@ -75,8 +87,11 @@ const ProductManager = (props:ProudctManager) => {
                          <td className="px-4 py-4">
                            {e.discount}
                          </td>
+                         <td className="px-4 py-4">
+                           {e.category}
+                         </td>
                          <td className="px-4 py-4 w-1/5">
-                           {e.desc}
+                           {e.desc.slice(0,50)}...  
                          </td>
                          <td className="px-4 py-4 text-sm font-bold">
                            <Link to={`/admin/product/${e._id}/edit`}  className="text-indigo-600 hover:text-indigo-900">Edit</Link>

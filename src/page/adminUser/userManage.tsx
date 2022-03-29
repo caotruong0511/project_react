@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
-import { get } from '../api/Product' 
-import { ProductType } from '../types/product'
+
+import { UserType } from '../../types/user'
+
 
 
 // type Product=[{
@@ -12,14 +13,16 @@ import { ProductType } from '../types/product'
 //   quantity:Number,
 //   desc:String  
 // }]
-type ProudctManager={
-  product:ProductType[],
-  onRemove:(_id:string|number)=>void
+type UserManager={
+  user:UserType[];
+  onRemove:(id:number|string)=>void
 }
-const ProductManager = (props:ProudctManager) => {
+const UserManage = (props:UserManager) => {
+  console.log(props.user)
+ 
   return (
     <div>
-       <a href="/admin/product/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</a>
+       <Link to="/admin/user/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</Link>
         <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto max-w-9sm m-auto">
           <div className="py-2 align-middle inline-block sm:px-6 lg:px-8">
@@ -31,49 +34,38 @@ const ProductManager = (props:ProudctManager) => {
                       Id
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
-                      Product name
+                      Name
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
-                      Image
+                      Email
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
-                      Price
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
-                      Quantity
-                    </th>
-                    <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
-                      Discount
+                      Password
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
                       Action
                     </th>
+                    
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y divide-gray-200">
-                 {props.product?.map((e,index)=>{
+                 {props.user?.map((e,index)=>{
                  return (
                        <tr key={index}>
                          <td className="px-6 py-4">
-                           {index++}
+                           {++index}
                          </td>
                          <td className="px-4 py-4">
                            {e.name}
                          </td>
-                         <td className="px-4 py-4 w-1/12">
-                          {e.img}
+                         <td className="px-4 py-4">
+                           {e.email}
                          </td>
                          <td className="px-4 py-4">
-                         {new Intl.NumberFormat("vi-VN", { style: "currency", currency: "VND" }).format((e.price))}
-                         </td>
-                         <td className="px-4 py-4">
-                           {e.quantity}
-                         </td>
-                         <td className="px-4 py-4 w-1/5">
-                           {e.desc}
+                           {e.password}
                          </td>
                          <td className="px-4 py-4 text-sm font-bold">
-                           <Link to={`/admin/product/${e._id}/edit`}  className="text-indigo-600 hover:text-indigo-900">Edit</Link>
+                           <Link to={`/admin/user/${e._id}/edit`}  className="text-indigo-600 hover:text-indigo-900">Edit</Link>
                            <span className="text-indigo-600 hover:text-indigo-900">|</span>
                           <button onClick={()=>props.onRemove(e._id)} id="btndel">Xóa</button>
                           </td>
@@ -92,4 +84,4 @@ const ProductManager = (props:ProudctManager) => {
   )
 }
 
-export default ProductManager
+export default UserManage

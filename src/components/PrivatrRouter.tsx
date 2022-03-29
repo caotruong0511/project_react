@@ -10,10 +10,11 @@ type PrivateRouterProps = {
 const PrivateRouter = (props: PrivateRouterProps) => {
     if(user){
       
-        if(user.roll==2){
-            <Navigate to={"/admin"}/>
+        if(user.roll!=2){
+            return <Navigate to={"/signin"}/>
+            
         }else{
-         return   <Navigate to={"/signin"}/>
+            <Navigate to={"/admin"}/>
         }
 
     }

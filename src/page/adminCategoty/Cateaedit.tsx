@@ -25,9 +25,6 @@ const Cateedit = (props: TypeProps) => {
 
     const onSubmit:SubmitHandler<FormInput>=data=>{
        props.onUpdate(data)
-      // console.log(data);
-
-    //    navigate('/admin/categories')
     }
   return (
     <div>

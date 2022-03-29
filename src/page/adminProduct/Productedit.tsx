@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useForm,SubmitHandler } from 'react-hook-form'
 import { useNavigate, useParams } from 'react-router-dom'
+import { list } from '../../api/category'
 import { getone,get } from '../../api/Product'
+import { Category } from '../../types/category'
 
 import { ProductType } from '../../types/product'
 
@@ -14,12 +16,24 @@ type FormInput ={
     img:string,
     quantity:number,
     discount:number,
+   category:number|string|undefined,
+
     desc:string
 }
 
 const Productedit = (props: ProducteditProps ) => {
     const navigate = useNavigate();
     const {register,handleSubmit,formState:{errors},reset}= useForm<FormInput>()
+    const [cate,getcate]=useState<Category[]>([])
+  useEffect(()=>{ 
+   const cate=async()=>{
+   const {data} = await list();
+   getcate(data)
+   }
+   cate()
+  },[])
+
+
     const {id} = useParams();
     useEffect(() => {
         const getProduct = async () => {
@@ -30,7 +44,7 @@ const Productedit = (props: ProducteditProps ) => {
     },[]);
     const onSubmit:SubmitHandler<FormInput> =data=>{
       props.onUpdate(data)
-      navigate("/admin/product")
+      
     }
     
   return (
@@ -45,7 +59,7 @@ const Productedit = (props: ProducteditProps ) => {
   </div>
   <div className="form-group">
     <label htmlFor="exampleInputEmail1">img</label>
-    <input type="text" className="form-control"  id="name" {...register('img')} />
+    <input type="file" className="form-control"  id="name" {...register('img')} />
   </div>
   <div className="form-group">
     <label htmlFor="exampleInputEmail1">quantity</label>
@@ -54,6 +68,17 @@ const Productedit = (props: ProducteditProps ) => {
   <div className="form-group">
     <label htmlFor="exampleInputEmail1">discount</label>
     <input type="text" className="form-control" id="name" {...register('discount')} />
+  </div>
+  <div className="form-group">
+  <label htmlFor="exampleInputEmail1">category</label>
+   <select {...register('category')} id="">
+     <option value="">--Chọn danh mục--</option>
+    {cate?.map((e,index)=>{
+      return(
+        <option key={index} value={`${e._id}`}>{e.name}</option>
+      )
+    })}
+   </select>
   </div>
   <div className="form-group">
     <label htmlFor="exampleInputEmail1">desc</label>
