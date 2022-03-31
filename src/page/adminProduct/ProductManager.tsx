@@ -18,13 +18,7 @@ type ProudctManager={
   onRemove:(_id:string|number)=>void
 }
 const ProductManager = (props:ProudctManager) => {
-  
-  // const [cate,setcate]=useState<Category[]>([])
-  // const product_one=async()=>{ 
-  //   const {data} = await get();
-  //   console.log(data)
-  // }
-  // product_one()
+  console.log(props.product)
   return (
     <div>
        <Link to="/admin/product/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</Link>
@@ -55,6 +49,9 @@ const ProductManager = (props:ProudctManager) => {
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
                       Category
+                    </th>
+                    <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
+                      Model
                     </th>
                     <th scope="col" className="px-6 py-3 text-left text-sm font-bold text-gray-500 uppercase tracking-wider">
                       Desc
@@ -88,7 +85,10 @@ const ProductManager = (props:ProudctManager) => {
                            {e.discount}
                          </td>
                          <td className="px-4 py-4">
-                           {e.category}
+                           {e.category.name}
+                         </td>
+                         <td className="px-4 py-4">
+                           {e.model==1?"Nam":"Nữ"}
                          </td>
                          <td className="px-4 py-4 w-1/5">
                            {e.desc.slice(0,50)}...  

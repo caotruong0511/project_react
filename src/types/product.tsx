@@ -5,6 +5,7 @@ export type ProductType = {
     img:String,
     quantity:Number,
     discount:Number,
+    model:Number,
     category:Number|String|undefined,
     desc:String  
     

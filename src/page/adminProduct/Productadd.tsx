@@ -14,6 +14,7 @@ type FormInput={
     quantity:number,
     category:number,
     discount:number,
+    model:number,
     desc:string
 }
 const Productadd = (props: ProductProps) => {
@@ -56,6 +57,13 @@ const Productadd = (props: ProductProps) => {
   <div className="form-group">
     <label htmlFor="exampleInputEmail1">discount</label>
     <input type="text" className="form-control" id="name" {...register('discount')}  />
+  </div>
+  <div className="form-group"  >
+  <label htmlFor="exampleInputEmail1">Model</label>
+    <select {...register('model')} id="">
+      <option value="0">Nữ</option>
+      <option value="1">Nam</option>
+    </select>
   </div>
   <div className="form-group">
   <label htmlFor="exampleInputEmail1">category</label>

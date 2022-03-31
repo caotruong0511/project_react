@@ -16,6 +16,7 @@ type FormInput ={
     img:string,
     quantity:number,
     discount:number,
+    model:number,
    category:number|string|undefined,
 
     desc:string
@@ -68,6 +69,13 @@ const Productedit = (props: ProducteditProps ) => {
   <div className="form-group">
     <label htmlFor="exampleInputEmail1">discount</label>
     <input type="text" className="form-control" id="name" {...register('discount')} />
+  </div>
+  <div className="form-group"  >
+  <label htmlFor="exampleInputEmail1">Model</label>
+    <select {...register('model')} id="">
+    <option value="0">Nữ</option>
+      <option value="1">Nam</option>
+    </select>
   </div>
   <div className="form-group">
   <label htmlFor="exampleInputEmail1">category</label>
