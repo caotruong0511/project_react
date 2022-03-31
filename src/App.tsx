@@ -28,6 +28,7 @@ import Categories from "./page/category";
 import UserManage from "./page/adminUser/userManage";
 import { addusers, getuser, putusers, removeuser } from "./api/user";
 import Useradd from "./page/adminUser/userAdd";
+import AOS from 'aos';
 
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";

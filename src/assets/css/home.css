@@ -1,0 +1,40 @@
+.sub_menu {
+  visibility: hidden;
+  opacity: 0;
+  transition: all 0.4s;
+  transform: translateY(10%);
+}
+#categories:hover ~ .sub_menu {
+  /* display: block; */
+  visibility: visible;
+  opacity: 1;
+  transition: all 0.4s;
+  transform: translateY(0%);
+}
+.sub_menu:hover {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0%);
+}
+.and{
+  text-align: center;
+  position: relative;
+  color: rgb(159, 152, 152);
+}
+.and::before{
+  content: "";
+    display:inline-block;
+    width: 120px;
+    
+    right: 39%;
+    background-color:rgb(159, 152, 152);
+    height: 2px;
+}
+.and::after{
+  content: "";
+    display:inline-block;
+    width: 120px;
+    height: 2px;
+    background-color: rgb(159, 152, 152);
+  
+}

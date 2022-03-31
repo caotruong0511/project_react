@@ -1,10 +1,10 @@
 import React from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { signin, signup } from '../api/auth'
 import { UserType } from '../types/user'
 import { authenticate } from '../utils/localstoage'
-
+import "../assets/css/home.css"
 type UserProps = {
    
 }
@@ -74,8 +74,15 @@ const Signin = (props: UserProps)=> {
               <path fillRule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clipRule="evenodd" />
             </svg>
           </span>
-          Sign Up
+          Sign In
         </button>
+      </div>
+      <div className='and'>
+        Hoặc
+      </div>
+      <div className='text-center'>
+        <span>Bạn chưa là thành viên? 
+<Link to="/signup" className='underline decoration-1 text-blue-500 ' > Đăng kí</Link> ngay</span>
       </div>
     </form>
   </div>
