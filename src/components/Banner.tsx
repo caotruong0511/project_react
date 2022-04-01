@@ -1,25 +1,25 @@
 import React from 'react'
-
+import "../assets/css/home.css"
 type Props = {}
 
 const Banner = (props: Props) => {
   return (
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
-  <div className="carousel-inner">
-    <div className="carousel-item active">
-      <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648716571/samples/animals/banner1_gkwhcn.png" className="d-block w-100" alt="..." />
+  <div className="carousel-inner ">
+    <div className="carousel-item active ">
+      <img src="https://cdn.pnjwatch.com.vn/Category/45/Banner-DocQuyen-23040x880-3.jpg" className="d-block  w-100" alt="..." />
     </div>
     <div className="carousel-item">
-      <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648716571/samples/animals/banner2_uo61of.png" className="d-block w-100" alt="..." />
+      <img src="https://donghotinnhiem.com/storage/2020/01/banner.jpg" className="d-block  w-100" alt="..." />
     </div>
     <div className="carousel-item">
-      <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648716571/samples/animals/banner3_q5y1ig.png" className="d-block w-100" alt="..." />
+      <img src="https://cdn.shopdongho.com/2018/09/gwnq-specsbanner-1.jpg" className="d-block  w-100" alt="..." />
     </div>
     <div className="carousel-item">
-      <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648716571/samples/animals/banner5_l84q58.png" className="d-block w-100" alt="..." />
+      <img src="https://i.pinimg.com/originals/88/f3/8f/88f38fe568f7e51006156c253e98138f.jpg" className=" d-block w-100" alt="..." />
     </div>
     <div className="carousel-item">
-      <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648716571/samples/animals/banner34_i85jrm.png" className="d-block w-100" alt="..." />
+      <img src="https://luxshopping.vn/Uploads/UserFiles/images/banner%20dong%20ho%20frederique%20constaint.png" className=" d-block w-100" alt="..." />
     </div>
   </div>
   <button className="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
