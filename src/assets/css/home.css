@@ -38,3 +38,7 @@
     background-color: rgb(159, 152, 152);
   
 }
+.carousel-inner img{
+  height: 550px;
+  
+}
