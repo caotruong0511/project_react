@@ -1,23 +1,44 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
-import { getone } from '../api/Product';
+import { Link, useParams } from 'react-router-dom'
+
+import Slider from 'react-slick';
+import "slick-carousel/slick/slick.css"
+import "slick-carousel/slick/slick-theme.css"
+import { detail, get, getone } from '../api/Product';
 import { ProductType } from '../types/product';
 
 type Props = {}
 
 const Detail = (props: Props) => {
+  let duration:number=0
     const {id} = useParams();
-    
+    const [related_products,setrelated_product] =useState<ProductType[]>([])
     const [product,setProduct]=useState<ProductType>();
-    useEffect(()=>{
-        const getProduct=async()=>{
-        const {data}= await getone(id)
-        setProduct(data)
-        console.log(data)
-        }
-        getProduct()
-    },[])
+    let settings = {
+      infinity: true,
+      autoplay: true,
+      speed: 200,
+      slidesToShow: 4,
+      slidesToScroll: 1,
+    }
 
+    const cate=product?.category;
+    const getProduct=async()=>{
+      const {data}= await getone(id)
+      setProduct(data)
+     
+      }
+
+    const relaed=async()=>{
+      const {data} = await detail(cate)
+      setrelated_product(data)
+      }
+     
+    useEffect(()=>{
+        getProduct(), relaed()
+    },[cate])
+    
+    
     const currencyformat = (data: number) => {
       return new Intl.NumberFormat("vi-VN", {
         style: "currency",
@@ -95,7 +116,34 @@ const Detail = (props: Props) => {
   </div>
 </section>
 
-    </div>
+<Slider {...settings}>
+        {related_products?.map((e,index)=>{
+    
+        return (
+          <div key={index} className="border border-black py-10" >
+                <img src={`${e.img}`} alt="" className="w-3/4 m-auto" />
+                <h1 className="font-semibold w-3/4 m-auto text-center mt-2">
+                  {e.name}
+                </h1>
+                <div className="flex mt-4 justify-around">
+                  <p className="text-red-500 font-bold">
+                    {currencyformat(e.price - (e.price * e.discount) / 100)}
+                  </p>
+                  <del className="text-sm">
+                    {e.discount > 0 ? currencyformat(e.price) : ""}
+                  </del>
+                </div>
+                <Link to={`/product/${e._id}`} className=""><button className="border border-black w-11/12 m-auto block mt-3 bg-red-500 text-white font-bold py-1">
+                  Xem ngay
+                </button></Link>
+                
+              </div>
+              
+        )
+        })}
+       </Slider>
+        </div>
+
   )
 }
 
