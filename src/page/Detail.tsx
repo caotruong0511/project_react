@@ -8,34 +8,41 @@ import { detail, get, getone } from '../api/Product';
 import { ProductType } from '../types/product';
 
 type Props = {}
+let carts:any = [];
+if(localStorage.getItem("cart")){
+    carts = JSON.parse(localStorage.getItem("cart") as string);
+}
 
 const Detail = (props: Props) => {
   let duration:number=0
     const {id} = useParams();
     const [related_products,setrelated_product] =useState<ProductType[]>([])
     const [product,setProduct]=useState<ProductType>();
-    let settings = {
-      infinity: true,
-      autoplay: true,
-      speed: 200,
-      slidesToShow: 4,
-      slidesToScroll: 1,
-    }
-
+  let settings = { infinity: true,
+    autoplay: true,
+    speed: 200,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+  }
+ 
     const cate=product?.category;
-    const getProduct=async()=>{
-      const {data}= await getone(id)
-      setProduct(data)
-     
-      }
+    useEffect(()=>{
+      const getProduct=async()=>{
+        const {data}= await getone(id)
+        setProduct(data)
+        }
+        getProduct()
+    },[id])
+   
 
-    const relaed=async()=>{
-      const {data} = await detail(cate)
-      setrelated_product(data)
-      }
+    
      
     useEffect(()=>{
-        getProduct(), relaed()
+      const relaed=async()=>{
+        const {data} = await detail(cate)
+        setrelated_product(data)
+        }
+        relaed()
     },[cate])
     
     
@@ -45,6 +52,26 @@ const Detail = (props: Props) => {
         currency: "VND",
       }).format(data);
     };
+  
+    const oncart=async()=>{
+    
+      const {data}= await getone(id)
+      const quantity = document.querySelector("#quantity").value; 
+      const existproduct = carts.find(item => data._id==item._id);
+      
+     
+      if(!existproduct){
+        carts.push({...data,quantity})
+      } else{
+        existproduct.quantity = Number(existproduct.quantity)
+        existproduct.quantity +=Number(quantity) ;
+    }
+        // carts.push({...data,quantity})
+        localStorage.setItem("cart",JSON.stringify(carts))
+ 
+    
+    }
+   
   return (
     <div>
          <section className="text-gray-700 body-font overflow-hidden bg-white">
@@ -104,7 +131,7 @@ const Detail = (props: Props) => {
         <div className="flex">
           <span className="title-font text-dashed font-medium text-2xl text-gray-900">{currencyformat(product?.price-(product?.price*product?.discount)/100)}</span>
           <span className="title-font ml-6 font-medium text-2xl text-gray-900 line-through ">{currencyformat(product?.price)}</span>
-          <button className="border border-black w-11/12 mx-2 bg-red-500 text-white rounded-sm" id="addtocart">Thêm vào giỏ hàng</button>
+          <button className="border border-black w-11/12 mx-2 bg-red-500 text-white rounded-sm" id="addtocart" onClick={oncart}>Thêm vào giỏ hàng</button>
           <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
             <svg fill="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} className="w-5 h-5" viewBox="0 0 24 24">
               <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z" />
@@ -116,7 +143,8 @@ const Detail = (props: Props) => {
   </div>
 </section>
 
-<Slider {...settings}>
+<h2 className="font-bold text-3xl ml-20 my-10 "> SẢN PHẨM LIÊN QUAN </h2>
+<Slider className='w-11/12 m-auto' {...settings}>
         {related_products?.map((e,index)=>{
     
         return (
@@ -133,7 +161,7 @@ const Detail = (props: Props) => {
                     {e.discount > 0 ? currencyformat(e.price) : ""}
                   </del>
                 </div>
-                <Link to={`/product/${e._id}`} className=""><button className="border border-black w-11/12 m-auto block mt-3 bg-red-500 text-white font-bold py-1">
+                <Link to={`/product/${e._id}`} className=""><button className="border border-black w-11/12 m-auto block mt-3 bg-slate-700 text-white  py-1">
                   Xem ngay
                 </button></Link>
                 
