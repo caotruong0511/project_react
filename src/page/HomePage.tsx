@@ -7,6 +7,7 @@ import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"
 import "slick-carousel/slick/slick-theme.css"
 import { Link } from "react-router-dom";
+import Banner from "../components/Banner";
 
 type ProductProps = {};
 
@@ -19,13 +20,14 @@ const HomePage = (props: ProductProps) => {
     autoplay: true,
     speed: 200,
     slidesToShow: 4,
-    slidesToScroll: 1,
+    slidesToScroll: 2,
   }
 
   const newProduct = async () => {
     const { data } = await get();
+    console.log(data)
     const newProduct = [];
-    for (let i = data.length - 5; i < data.length; i++) {
+    for (let i = data.length - 8; i < data.length; i++) {
       newProduct.push(data[i]);
     }
     setproduct(newProduct);
@@ -64,6 +66,29 @@ const HomePage = (props: ProductProps) => {
   return (
     <div>
       <div className="w-5/6 m-auto ">
+      <div className="flex justify-around ">
+      <div className="border border-black">
+      <h1 className="font-bold text-xl text-center">Giao hàng nhanh chóng</h1>
+    <img data-aos="fade-up"
+                data-aos-offset="150"
+                data-aos-delay={`${duration}`}
+                data-aos-duration="1000" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648780660/samples/animals/download_exuixm.png" alt="" />
+  </div>
+  <div className="border border-black">
+    <h1 className="font-bold text-xl text-center">Giao hàng nhanh chóng</h1>
+    <img data-aos="fade-right"
+                data-aos-offset="150"
+                data-aos-delay={`${duration}`}
+                data-aos-duration="1000" className="w-2/3" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648747582/samples/animals/dich_vu_giao_hang_nhanh_gia_re1_xknmjv.png" alt="" />
+  </div>
+  <div className="border border-black bg-blue-500">
+    <img data-aos="fade-up"
+                data-aos-offset="150"
+                data-aos-delay={`${duration}`}
+                data-aos-duration="1000" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648781853/samples/animals/images_6_d2s0ew." alt="" />
+  </div>
+</div>
+  
         <h2 className="font-bold text-3xl  my-10 "> SẢN PHẨM MỚI </h2>
         <div className="grid grid-cols-4 gap-11">
           {product?.map((e: any, index) => {
@@ -71,9 +96,9 @@ const HomePage = (props: ProductProps) => {
             return (
               <div
                 data-aos="fade-up"
-                data-aos-offset="150"
+                data-aos-offset="50"
                 data-aos-delay={`${duration}`}
-                data-aos-duration="1000"
+                data-aos-duration="500"
                 key={index}
                 className="border border-black py-10"
               >
@@ -98,7 +123,14 @@ const HomePage = (props: ProductProps) => {
           })}
         </div>
       </div>
-
+      {/* img */}
+      <div className="grid grid-cols-2 my-20 ">
+        <img className="boy" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648801734/assm/bst-dong-ho-cho-nam_1562154973_dlfcph.jpg" alt="" />
+     <div>
+        <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648801735/assm/bst-danh-cho-nu_1562151982_j92pdt.jpg" alt="" />
+        <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648801740/assm/dong-ho-cap-doi_1593660350_pou7qi.jpg" alt="" />
+        </div>
+      </div>
       <div className="w-5/6 m-auto ">
         <h2 className="font-bold text-3xl  my-10 "> SẢN PHẨM SALE </h2>
         <Slider {...settings}>
@@ -128,7 +160,9 @@ const HomePage = (props: ProductProps) => {
           })}
         </Slider>
       </div>
+    
     </div>
+    
   );
 };
 
