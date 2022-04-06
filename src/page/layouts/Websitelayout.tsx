@@ -5,7 +5,7 @@ import Foodter from "../../components/Foodter";
 import Herder from "../../components/Herder";
 import Nav from '../../components/Nav'
 import ProductList from "../../components/ProductList";
-import Search from "../../components/Search";
+import Search from "../Search";
 
 type Props = {};
 
@@ -13,9 +13,7 @@ const Websitelayout = (props: Props) => {
   return (
     <div>
       <header>
-     
       <Herder/>
-       <Banner/>
       </header>
       <main>
       <Outlet/>

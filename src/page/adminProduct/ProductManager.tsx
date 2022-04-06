@@ -21,7 +21,8 @@ const ProductManager = (props:ProudctManager) => {
   console.log(props.product)
   return (
     <div>
-       <Link to="/admin/product/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</Link>
+      <h1 className='font-bold text-3xl my-2 text-center'>Danh sách sản phẩm</h1>
+       <Link to="/admin/product/add" className="border border-grey-600 mx-8 px-5 py-1 inline-block">Thêm mới</Link>
         <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto max-w-9sm m-auto">
           <div className="py-2 align-middle inline-block sm:px-6 lg:px-8">
@@ -88,7 +89,7 @@ const ProductManager = (props:ProudctManager) => {
                            {e.category.name}
                          </td>
                          <td className="px-4 py-4">
-                           {e.model==1?"Nam":"Nữ"}
+                           {e.model==1?"Nam":(e.model==0?"Nữ":"Đôi")}
                          </td>
                          <td className="px-4 py-4 w-1/5">
                            {e.desc.slice(0,50)}...  

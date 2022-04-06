@@ -1,9 +1,12 @@
 import React from 'react'
-import "../assets/css/home.css"
+import "../assets/css/banner.css"
+import AOS from "aos";
+import Slider from "react-slick";
 type Props = {}
 
 const Banner = (props: Props) => {
   return (
+  
     <div id="carouselExampleControls" className="carousel slide" data-bs-ride="carousel">
   <div className="carousel-inner ">
     <div className="carousel-item active ">
@@ -30,7 +33,9 @@ const Banner = (props: Props) => {
     <span className="carousel-control-next-icon" aria-hidden="true" />
     <span className="visually-hidden">Next</span>
   </button>
+  
 </div>
+
 
   )
 }

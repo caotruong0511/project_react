@@ -37,8 +37,9 @@ const Productadd = (props: ProductProps) => {
     }
   return (
     <div>
-     <form onSubmit={handleSubmit(onSubmit)}>
-  <div className="form-group">
+      <h1 className='font-bold text-3xl my-2 text-center'>Thêm mới sản phẩm</h1>
+     <form className='w-11/12 m-auto' onSubmit={handleSubmit(onSubmit)}>
+  <div className="form-group ">
     <label htmlFor="exampleInputEmail1">Name</label>
     <input type="text" className="form-control" id="name" {...register('name')}  />
   </div>
@@ -60,14 +61,15 @@ const Productadd = (props: ProductProps) => {
   </div>
   <div className="form-group"  >
   <label htmlFor="exampleInputEmail1">Model</label>
-    <select {...register('model')} id="">
+    <select className="form-control" {...register('model')} id="">
       <option value="0">Nữ</option>
       <option value="1">Nam</option>
+      <option value="2">Đôi</option>
     </select>
   </div>
   <div className="form-group">
   <label htmlFor="exampleInputEmail1">category</label>
-   <select {...register('category')} id="">
+   <select className="form-control" {...register('category')} id="">
      <option value="">--Chọn danh mục--</option>
     {cate?.map((e,index)=>{
       return(
@@ -81,7 +83,7 @@ const Productadd = (props: ProductProps) => {
     <input type="text" className="form-control" id="name" {...register('desc')} />
   </div>
  
-  <button type="submit" className="btn btn-primary bg-black">Submit</button>
+  <button type="submit" className="btn btn-primary bg-black my-3">Thêm mới</button>
 </form>
 
     </div>

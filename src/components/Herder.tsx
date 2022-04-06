@@ -1,11 +1,21 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Nav from './Nav'
-import Search from './Search'
+import Search from '../page/Search'
 
-type Props = {}
+type Props = {
+    // onsubmid:()=>void
+}
 
 const Herder = (props: Props) => {
+    const navigate =useNavigate()
+    const onsearch=()=>{
+    const search_value =  document.querySelector('#search_content').value
+        if(search_value!=""){
+            navigate(`/product/search/${search_value}`)
+        }
+        
+    }
   return (
     <div>
         <div id="main_header">
@@ -39,18 +49,22 @@ const Herder = (props: Props) => {
                     <div className="py-3 w-1/6">
                         <img src="https://res.cloudinary.com/dcalzi23m/image/upload/v1644595451/js_advanced/logo_anjssy.png" className="w-full" />
                     </div>
-                    <div className="py-3">
+                    <div className="my-3">
                     <Nav/>
                     </div>
                     <div className="py-3 relative flex items-center">
-                        <input type="text" id="search_content" className="border border-slate-500 rounded-3xl outline-none py-2 px-10 indent-1" placeholder="Tìm kiếm tại đây..." />
-                        <svg xmlns="http://www.w3.org/2000/svg" id="btn_search" className="h-8 w-8 inline text-slate-500 cursor-pointer absolute right-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <form action="">
+                        <input type="text" id="search_content" className="relative rela border border-slate-500 rounded-3xl outline-none py-2 px-10 indent-1" placeholder="Tìm kiếm tại đây..." />
+                      <button onClick={onsearch} type='button'> <svg xmlns="http://www.w3.org/2000/svg" id="btn_search" className="h-8 w-8 inline text-slate-500 top-5 cursor-pointer absolute right-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path strokeLinecap='round' strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                         </svg>
+                        </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
+       
     </div>
   )
 }

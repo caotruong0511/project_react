@@ -20,7 +20,8 @@ type ProudctManager={
 const CateManager = (props:ProudctManager) => {
   return (
     <div>
-       <Link to="/admin/categories/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</Link>
+      <h1 className='font-bold text-3xl my-2 text-center'>Danh sách danh mục</h1>
+       <Link to="/admin/categories/add" className="border border-grey-600 mx-8 px-5 py-1 inline-block">Thêm mới</Link>
         <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto w-full m-auto">
           <div className="py-2 align-middle  sm:px-6 lg:px-8 w-11/12 m-auto block">

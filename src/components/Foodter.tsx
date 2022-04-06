@@ -5,7 +5,7 @@ type Props = {}
 const Foodter = (props: Props) => {
   return (
     <div>
-        <div className="bg-zinc-700">
+        <div className="bg-zinc-700 mt-10">
                 <div className="w-11/12 m-auto">
                     <div className="text-white flex flex-col justify-center items-center py-10">
                         <h3 className="text-center my-3 text-bold text-2xl">Tham gia cùng chúng tôi</h3>

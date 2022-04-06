@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import logo from "./logo.svg";
 import "./App.css";
-import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes, useNavigate, useParams } from "react-router-dom";
 import Websitelayout from "./page/layouts/Websitelayout";
 import { ProductType } from "./types/product";
 import axios from "axios";
@@ -9,7 +9,7 @@ import ProductList from "./components/ProductList";
 import Detail from "./page/Detail";
 import Adminlayout from "./page/layouts/Adminlayout";
 import ProductManager from "./page/adminProduct/ProductManager";
-import { add, get, remove, update } from "./api/Product";
+import { add, get, getmodel, remove, update } from "./api/Product";
 import Productadd from "./page/adminProduct/Productadd";
 import Productedit from "./page/adminProduct/Productedit";
 import HomePage from "./page/HomePage";
@@ -33,10 +33,16 @@ import AOS from 'aos';
 import toastr from "toastr";
 import "toastr/build/toastr.min.css";
 import Useredit from "./page/adminUser/useredit";
+
+import Search from "./page/Search";
+import Productlayout from "./page/layouts/Productlayout";
+import Model from "./page/Model";
+import Cart from "./page/Cart";
 function App() {
   const [product, setProduct] = useState<ProductType[]>([]);
   const [categorys, setcategory] = useState<Category[]>([]);
   const [users, setuser] = useState<UserType[]>([]);
+  const [model,setmodel] =useState<ProductType[]>([])
   const navigate = useNavigate();
   
   //call api product
@@ -203,18 +209,25 @@ setTimeout(()=>navigate("/admin/users"),2000)
   toastr.error("Cập nhật thất bại")
 }
 }
+
+
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<Websitelayout />}>
           <Route index element={<HomePage />} />
-          <Route path="product" element={<ProductList products={product} />} />
+          <Route path="/product" element={<Productlayout/>}>
+          <Route index element={<ProductList products={product} />} />
+          <Route path="category/:id" element={<Categories />} />
+          <Route path="/product/model/:id" element={<Model />} />
+          <Route path="/product/search/:search_value" element={<Search />} />
+          </Route>
           <Route path="/product/:id" element={<Detail />} />
-          <Route path="/category/:id" element={<Categories />} />
+          <Route path="/cart" element={<Cart />} />
         </Route>
 
         <Route path="admin" element={<PrivateRouter><Adminlayout /></PrivateRouter>}>
-          <Route index element={<h1>Test</h1>} />
           <Route index element={<Navigate to="dashboard" />} />
           <Route path="dashboard" element={<Dashboard />} />
           <Route path="product" element={<ProductManager product={product} onRemove={onHandlerRemove} />}/>

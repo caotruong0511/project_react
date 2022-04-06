@@ -3,7 +3,8 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
 import { signup } from '../api/auth'
 import { UserType } from '../types/user'
-
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 type UserProps = {
     
 }
@@ -16,30 +17,39 @@ const Signup = (props: UserProps)=> {
   const navigate=useNavigate()
     const {register,handleSubmit,formState:{errors}}=useForm<FormInput>();
     const onSubmit:SubmitHandler<FormInput>=data=>{
-      signup(data)
-      console.log(data)
+      if(data){
+        signup(data)
+        setTimeout(()=>{
+          toastr.success("Đăng kí thành công")
+          navigate("/signin")
+        },2000)
+      }
+      else{
+        toastr.error("Tài khoản đã tồn tại")
+      }
+     
     }
   return (
- <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+ <div className="signin min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div className="max-w-md w-full space-y-8">
     <div>
-      <img className="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
-      <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <img className="mx-auto h-12 w-auto" src="" alt="Workflow" />
+      <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
         Sign Up
       </h2>
     </div>
     <form className="mt-8 space-y-6" action="#" method="POST" id="formsingUp" onSubmit={handleSubmit(onSubmit)}>
       <input type="hidden" name="remember" defaultValue="true" />
       <div className="rounded-md shadow-sm -space-y-px">
-        <div>
+        <div className='py-1'>
           <label htmlFor="username" className="sr-only">Username</label>
-          <input  {...register('name')}  type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username" />
+          <input  {...register('name')}  type="text" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Username" />
         </div>
-        <div>
+        <div  className='py-1'>
           <label htmlFor="email" className="sr-only">Email address</label>
-          <input {...register('email')} type="email" autoComplete="email" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address" />
+          <input {...register('email')} type="email" autoComplete="email" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Email address" />
         </div>
-        <div>
+        <div  className='py-1'>
           <label htmlFor="password" className="sr-only">Password</label>
           <input id="password" {...register('password')} name="password" type="password" autoComplete="current-password" required className="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password" />
         </div>
@@ -50,13 +60,13 @@ const Signup = (props: UserProps)=> {
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-          <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+          <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-white focus:ring-indigo-500 border-gray-300 rounded" />
+          <label htmlFor="remember-me" className="ml-2 block text-sm text-white">
             Remember me
           </label>
         </div>
         <div className="text-sm">
-          <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+          <a href="#" className="font-medium text-white hover:text-indigo-500">
             Forgot your password?
           </a>
         </div>

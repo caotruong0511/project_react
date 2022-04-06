@@ -25,7 +25,6 @@ const HomePage = (props: ProductProps) => {
 
   const newProduct = async () => {
     const { data } = await get();
-    console.log(data)
     const newProduct = [];
     for (let i = data.length - 8; i < data.length; i++) {
       newProduct.push(data[i]);
@@ -49,7 +48,7 @@ const HomePage = (props: ProductProps) => {
     setproductsale(hotsale);
   };
 
-  //
+  // 
   useEffect(() => {
     AOS.init(), newProduct(), hotsale();
   }, []);
@@ -65,34 +64,12 @@ const HomePage = (props: ProductProps) => {
   //
   return (
     <div>
+       <Banner/>
       <div className="w-5/6 m-auto ">
-      <div className="flex justify-around ">
-      <div className="border border-black">
-      <h1 className="font-bold text-xl text-center">Giao hàng nhanh chóng</h1>
-    <img data-aos="fade-up"
-                data-aos-offset="150"
-                data-aos-delay={`${duration}`}
-                data-aos-duration="1000" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648780660/samples/animals/download_exuixm.png" alt="" />
-  </div>
-  <div className="border border-black">
-    <h1 className="font-bold text-xl text-center">Giao hàng nhanh chóng</h1>
-    <img data-aos="fade-right"
-                data-aos-offset="150"
-                data-aos-delay={`${duration}`}
-                data-aos-duration="1000" className="w-2/3" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648747582/samples/animals/dich_vu_giao_hang_nhanh_gia_re1_xknmjv.png" alt="" />
-  </div>
-  <div className="border border-black bg-blue-500">
-    <img data-aos="fade-up"
-                data-aos-offset="150"
-                data-aos-delay={`${duration}`}
-                data-aos-duration="1000" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648781853/samples/animals/images_6_d2s0ew." alt="" />
-  </div>
-</div>
-  
-        <h2 className="font-bold text-3xl  my-10 "> SẢN PHẨM MỚI </h2>
+        <h2  className="new font-bold text-3xl my-10 "> SẢN PHẨM MỚI </h2>
         <div className="grid grid-cols-4 gap-11">
           {product?.map((e: any, index) => {
-            duration += 200;
+            duration += 100;
             return (
               <div
                 data-aos="fade-up"
@@ -114,7 +91,7 @@ const HomePage = (props: ProductProps) => {
                     {e.discount > 0 ? currencyformat(e.price) : ""}
                   </del>
                 </div>
-                <Link to={`/product/${e._id}`} className=""><button className="border border-black w-11/12 m-auto block mt-3 bg-red-500 text-white font-bold py-1">
+                <Link to={`/product/${e._id}`} className=""><button className="border border-black w-11/12 m-auto block mt-3 bg-slate-700 text-white  py-1">
                   Xem ngay
                 </button></Link>
                 
@@ -123,12 +100,48 @@ const HomePage = (props: ProductProps) => {
           })}
         </div>
       </div>
+      {/* icon */}
+      <div className="box my-10">
+      <div className="grid grid-cols-3 m-auto w-2/3">
+        
+      <div className="box_item ">
+      <h1 className="font-bold text-xl text-center">Chất lượng dẫn đầu</h1>
+    <img data-aos="flip-down"
+                data-aos-offset="150"
+                data-aos-delay="400"
+                data-aos-duration="500" className="w-28 m-auto py-2 "  src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648813302/assm/kisspng-computer-icons-desktop-wallpaper-guarantee-icon-5b14ce8215d8d3.1912955815280902420895_vr4q3h.png" alt="" />
+  </div>
+  <div className="box_item border-r-2 border-l-2">
+    <h1 className="font-bold text-xl text-center">Giao hàng nhanh chóng</h1>
+    <img data-aos="fade-right"
+                data-aos-offset="150"
+                data-aos-delay="400"
+                data-aos-duration="500" className=" w-28 m-auto py-2 " src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648818951/assm/kisspng-delivery-vector-graphics-courier-computer-icons-ma-smoke-supplies-canada-page-2-all-your-smoke-su-5c46b24ab62cd8.0305070415481370347462_qt93rw.png" alt="" />
+  </div>
+  <div className="box_item">
+  <h1 className="font-bold text-xl text-center">Bảo hành toàn quốc</h1>
+    <img data-aos="flip-down"
+                data-aos-offset="150"
+                data-aos-delay="400"
+                data-aos-duration="500" className="w-28 m-auto py-2 " src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648818261/assm/5a220dc1a97444.4336082815121811856941_xcevgf.png" alt="" />
+  </div>
+</div>
+</div>
       {/* img */}
-      <div className="grid grid-cols-2 my-20 ">
+      <div className="model">
+        <div className="product_boy">
         <img className="boy" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648801734/assm/bst-dong-ho-cho-nam_1562154973_dlfcph.jpg" alt="" />
+        <Link to={`/product/model/1`}><p className="boy_text">ĐỒNG HỒ DÀNH CHO NAM</p></Link>
+        </div>
      <div>
-        <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648801735/assm/bst-danh-cho-nu_1562151982_j92pdt.jpg" alt="" />
-        <img src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648801740/assm/dong-ho-cap-doi_1593660350_pou7qi.jpg" alt="" />
+        <div className="collection_name">
+        <img className="girl" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648801735/assm/bst-danh-cho-nu_1562151982_j92pdt.jpg" alt="" />
+        <Link to={`/product/model/0`}><p className="collection">ĐỒNG HỒ DÀNH CHO NỮ</p></Link>
+        </div>
+        <div className="collection_name">
+        <img className="girl" src="https://res.cloudinary.com/dmlv9tzte/image/upload/v1648801740/assm/dong-ho-cap-doi_1593660350_pou7qi.jpg" alt="" />
+        <Link to={`/product/model/2`}><p className="couple">ĐỒNG HỒ CẶP ĐÔI</p></Link>
+        </div>
         </div>
       </div>
       <div className="w-5/6 m-auto ">
@@ -152,9 +165,9 @@ const HomePage = (props: ProductProps) => {
                     {e.discount > 0 ? currencyformat(e.price) : ""}
                   </del>
                 </div>
-                <button className="border border-black w-11/12 m-auto block mt-3 bg-red-500 text-white font-bold py-1">
+                <Link to={`/product/${e._id}`} className=""><button className="border border-black w-11/12 m-auto block mt-3 bg-slate-700 text-white  py-1">
                   Xem ngay
-                </button>
+                </button></Link>
               </div>
             );
           })}

@@ -22,7 +22,8 @@ const UserManage = (props:UserManager) => {
  
   return (
     <div>
-       <Link to="/admin/user/add" className="border border-grey-600 m-8 px-5 py-1 inline-block">Thêm mới</Link>
+      <h1 className='font-bold text-3xl my-2 text-center'>Danh sách tài khoản</h1>
+       <Link to="/admin/user/add" className="border border-grey-600 mx-8 px-5 py-1 inline-block">Thêm mới</Link>
         <div className="flex flex-col">
         <div className="-my-2 overflow-x-auto max-w-9sm m-auto">
           <div className="py-2 align-middle inline-block sm:px-6 lg:px-8">

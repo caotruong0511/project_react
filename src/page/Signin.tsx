@@ -5,6 +5,8 @@ import { signin, signup } from '../api/auth'
 import { UserType } from '../types/user'
 import { authenticate } from '../utils/localstoage'
 import "../assets/css/home.css"
+import toastr from "toastr";
+import "toastr/build/toastr.min.css";
 type UserProps = {
    
 }
@@ -20,20 +22,27 @@ const Signin = (props: UserProps)=> {
       const {data:user}=await signin(data);
       authenticate(user,()=>{
       if(user.user.roll!=2){
-        navigate("/")
+        setTimeout(()=>{
+          toastr.success("Đăng nhập thành công")
+          navigate("/")
+        },1000)
+       
       }
       else{
-        navigate("/admin")
+        setTimeout(()=>{
+          toastr.success("Đăng nhập thành công")
+          navigate("/admin")
+        },1000)
       }
 
       })
     }
   return (
- <div className="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+ <div className="signin min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
   <div className="max-w-md w-full space-y-8">
     <div>
-      <img className="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow" />
-      <h2 className="mt-6 text-center text-3xl font-extrabold text-gray-900">
+      <img className="mx-auto h-12 w-auto" src="" alt="Workflow" />
+      <h2 className="mt-6 text-center text-3xl font-extrabold text-white">
         Sign In
       </h2>
     </div>
@@ -55,13 +64,13 @@ const Signin = (props: UserProps)=> {
       </div>
       <div className="flex items-center justify-between">
         <div className="flex items-center">
-          <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" />
-          <label htmlFor="remember-me" className="ml-2 block text-sm text-gray-900">
+          <input id="remember-me" name="remember-me" type="checkbox" className="h-4 w-4 text-white focus:ring-indigo-500 border-gray-300 rounded" />
+          <label htmlFor="remember-me" className=" ml-2 block text-sm text-white">
             Remember me
           </label>
         </div>
         <div className="text-sm">
-          <a href="#" className="font-medium text-indigo-600 hover:text-indigo-500">
+          <a href="#" className="font-medium text-white hover:text-indigo-500">
             Forgot your password?
           </a>
         </div>
@@ -80,7 +89,7 @@ const Signin = (props: UserProps)=> {
       <div className='and'>
         Hoặc
       </div>
-      <div className='text-center'>
+      <div className='text-center text-white'>
         <span>Bạn chưa là thành viên? 
 <Link to="/signup" className='underline decoration-1 text-blue-500 ' > Đăng kí</Link> ngay</span>
       </div>

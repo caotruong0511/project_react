@@ -14,29 +14,25 @@ const ProductList = ({products}: ProductProps) => {
       currency: "VND",
     }).format(data);
   };
+  console.log(products.length);
+  
   return (
-    
-    <div className="w-5/6 m-auto ">
-  <div>
-    
-  </div>
-
-
-    <h2 className="font-bold text-3xl  my-10 "> SẢN PHẨM MỚI </h2>
+    <div className="w-11/12 m-auto ">
+    <h2 className="font-bold text-xl  my-2 "> Tìm thấy <span className='font-bold text-2xl my-10'>"{products.length}"</span>  sản phẩm </h2>
     <div className="grid grid-cols-4 gap-11">
         {products?.map((e,index)=>{
-         duration += 100;
+         
         return (
           <div
                 data-aos="fade-right"
-                data-aos-offset="150"
-                data-aos-delay={`${duration}`}
-                data-aos-duration="200"
-                key={index}
-                className="border border-black py-10"
+                data-aos-offset="50"
+                data-aos-delay="100"
+                data-aos-duration="500"
+               key={index}
+                className="border border-black py-3"
               >
-                <img src={`${e.img}`} alt="" className="w-3/4 m-auto" />
-                <h1 className="font-semibold w-3/4 m-auto text-center mt-2">
+                <img src={`${e.img}`} alt="" className="w-28 m-auto" />
+                <h1 className="w-48  m-auto text-center mt-3 text-sm">
                   {e.name}
                 </h1>
                 <div className="flex mt-4 justify-around">
@@ -47,7 +43,7 @@ const ProductList = ({products}: ProductProps) => {
                     {e.discount > 0 ? currencyformat(e.price) : ""}
                   </del>
                 </div>
-                <Link to={`/product/${e._id}`} className=""><button className="border border-black w-11/12 m-auto block mt-3 bg-red-500 text-white font-bold py-1">
+                <Link to={`/product/${e._id}`} className=""><button className="border border-black w-11/12 m-auto block mt-3 bg-slate-700 text-white  py-1">
                   Xem ngay
                 </button></Link>
                 

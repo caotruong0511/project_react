@@ -1,3 +1,4 @@
+
 import { isauthenticate } from '../utils/localstoage';
 import instance from './instance';
 
@@ -6,9 +7,23 @@ export const get = () => {
     const url = `/products`;
     return instance.get(url)
 }
+export const detail = (cate:number) => {
+    const url = `/product/?id=${cate}`;
+    console.log(cate);
+    
+    return instance.get(url)
+}
+export const getmodel = (id:string|undefined) => {
+    const url = `/products/getByModel/${id}`;
+    return instance.get(url)
+}
 export const getone = (id:any) => {
     const url = `/products/${id}`;
     return instance.get(url)
+}
+export const search=(search_value:string|undefined)=>{
+    const url = `/search?q=${search_value}`;
+    return instance.post(url)
 }
 export const add = (product: any) => {
     console.log(user._id)
